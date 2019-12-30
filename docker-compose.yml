@@ -1,6 +1,18 @@
 version: "3.4"
 
 services:
+  jenkins-agent-maven:
+    image: maxfouquet/jnlp-maven-slave
+    container_name: jenkins-agent-maven
+    networks:
+      - ci-net
+    environment:
+      JENKINS_URL: http://jenkins:8080
+      JENKINS_AUTH: agent:agent
+      JENKINS_SLAVE_NAME: maven
+      JENKINS_SLAVE_NUM_EXECUTORS: 2
+    restart: on-failure
+
   jenkins-agent-node:
     image: maxfouquet/jnlp-node-slave
     container_name: jenkins-agent-node
