@@ -5,7 +5,7 @@ Docker CI Pipeline
 
 ### Tools
 
-- Jenkins (http://localhost:8081)
+- Jenkins (http://localhost:8083)
 - SonarQube (http://localhost:9000)
 
 ### Setup CI
