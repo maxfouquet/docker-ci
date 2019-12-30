@@ -5,13 +5,13 @@ Docker CI Pipeline
 
 ### Tools
 
-- Jenkins (http://localhost:8080)
+- Jenkins (http://localhost:8081)
 - SonarQube (http://localhost:9000)
 
 ### Setup CI
 
 ```
-make setup
+make
 ```
 
 ### Unlock Jenkins
