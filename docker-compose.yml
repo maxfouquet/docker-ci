@@ -5,7 +5,7 @@ services:
     image: maxfouquet/jnlp-maven-slave
     container_name: jenkins-agent-maven
     networks:
-      - ci-net
+      - cicd
     environment:
       JENKINS_URL: ${JENKINS_PROTOCOL}://${JENKINS_HOST}:${JENKINS_PORT}
       JENKINS_AUTH: ${JENKINS_USERNAME}:${JENKINS_PASSWORD}
@@ -17,7 +17,7 @@ services:
     image: maxfouquet/jnlp-node-slave
     container_name: jenkins-agent-node
     networks:
-      - ci-net
+      - cicd
     environment:
       JENKINS_URL: ${JENKINS_PROTOCOL}://${JENKINS_HOST}:${JENKINS_PORT}
       JENKINS_AUTH: ${JENKINS_USERNAME}:${JENKINS_PASSWORD}
@@ -29,7 +29,7 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     networks:
-      - ci-net
+      - cicd
     ports:
       - "8080:8080"
     volumes:
@@ -39,7 +39,7 @@ services:
     image: sonarqube
     container_name: sonarqube
     networks:
-      - ci-net
+      - cicd
     ports:
       - "9000:9000"
     environment:
@@ -53,7 +53,7 @@ services:
     image: postgres
     container_name: postgres
     networks:
-      - ci-net
+      - cicd
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
@@ -63,8 +63,9 @@ services:
       - postgresql_data:/var/lib/postgresql/data
 
 networks:
-  ci-net:
-    driver: bridge
+  cicd:
+    external:
+      name: cicd
 
 volumes:
   jenkins_home:
